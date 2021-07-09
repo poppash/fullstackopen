@@ -1,0 +1,24 @@
+note over browser
+user fills form and hits submit
+end note
+
+note over browser
+a new note object is constructed and gets appended to the (global) notes array
+end note
+
+note over browser
+the form's input field is cleared
+end note
+
+note over browser
+the notes are redrawn (the new note is now visible)
+end note
+
+note over browser
+finally, a POST request is made (persisting the new note)
+
+Content-Type: application/json
+Request payload: {"content":"new spa note","date":"2021-07-09T20:01:38.040Z"}
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa

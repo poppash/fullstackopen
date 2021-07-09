@@ -1,0 +1,36 @@
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/notes
+
+note over server:
+Content-Type: 'application/x-www-form-urlencoded'
+Request payload: 'note=new+note'
+end note
+
+server-->browser: 302 Found | HTML-code
+
+note over browser:
+the response tells the browser to redirect to '/exampleapp/notes' (i.e., refresh), but it's already there.
+so, it'll only grab main.css and main.js.
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: 200 OK | main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: 200 OK | main.js
+
+note over browser:
+browser starts executing JS-code
+that requests JSON data from server
+
+xhttp.open("GET", "/exampleapp/data.json", true)
+xhttp.send()
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: 200 OK | [{"content":"HOLY","date":"2021-07-09T05:23:28.283Z"}, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+
+xhttp.onreadystatechange = function () {...}
+end note

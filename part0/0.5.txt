@@ -1,0 +1,24 @@
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: 200 OK | HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: 200 OK | main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: 200 OK | spa.js
+
+note over browser:
+browser starts executing JS-code
+that requests JSON data from server
+
+xhttp.open("GET", "/exampleapp/data.json", true)
+xhttp.send()
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: 200 OK | [[{"content":"lll","date":"2021-07-09T05:42:36.469Z"}, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+
+xhttp.onreadystatechange = function () {...}
+end note

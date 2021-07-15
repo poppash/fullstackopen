@@ -19,7 +19,7 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
-  const [votes, setVotes] = useState(anecdotes.map(_ => 0));
+  const [votes, setVotes] = useState(anecdotes.map((_) => 0));
   const [mostVotedFor, setMostVotedFor] = useState({ index: 0, votes: 0 });
 
   const randomSelect = () => {
